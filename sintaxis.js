@@ -245,3 +245,65 @@ let res = otra.concat(lista);
 console.log(res);
 console.log(typeof(res)); // objeto
 
+/*
+    Matrices
+*/
+let una = new Array(5);
+let dos = new Array(5);
+let tres = new Array(5);
+
+let total = new Array(una,dos, tres)
+console.log (total);
+
+// Otra forma
+let col = 3;
+let matriz = [[], [], []];
+for (let i = 0; i < matriz.length; i++) {
+    for (let j = 0; j < col; j++) {
+        matriz[i][j] = 1;
+    }  
+}
+console.log(matriz);
+
+/*
+    Si tenemos un numero y queremos pasarlo a cadena tenemos varias maneras
+
+    let num = 5.2213;
+    Una chapuza
+    num += "";
+    Otra 
+    num = String(num);
+
+    Un método mejor
+*/
+let num = 5.2213;
+num = num.toString();
+
+/*
+    Math
+
+    Math.pow
+    Math.floor
+    Math.E
+    Math.random()
+    Math.ceil
+    Math.sqrt
+    Math.sin
+    Math.cos
+    Math.max
+    Math.min
+*/
+
+/*
+    Cadenas
+    
+*/
+let frase = "sigue al conejo blanco, Neo";
+let res = frase.toUpperCase();
+let res = frase.toLowerCase();
+let res = frase.charAt(4);
+let res = frase.indexOf("e"); // primera aparición
+let res = frase.lastIndexOf("e"); // última aparición
+let res = frase.split(""); // pasa la frase a un array de string por donde lo separemos
+
+console.log(res);
