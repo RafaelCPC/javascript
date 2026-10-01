@@ -141,7 +141,7 @@ function ej24 () {
 console.log(ej24());
 
 /*
-Ejercicio 25: Una clase tiene 4 alumnos y cada alumno ha realizado 5 exámenes. Las
+Ejercicio 25: Una clase tiene 5 alumnos y cada alumno ha realizado 4 exámenes. Las
 notas se almacenan en una matriz donde:
 • cada fila representa a un alumno
 • cada columna representa un examen
@@ -151,3 +151,27 @@ Crea un programa que calcule:
 • Cuantos alumnos tienen la media igual o superior a 5
 • Que alumno tiene la media más alta.
 */
+
+/*
+Ejercicio 26: Crea un programa que pida el numero de filas y el numero de columnas
+al usuario. Ambos números deben ser positivos y estar entre 3 y 7. Si un numero no
+cumple esas condiciones, debe volver a pedirse (solo ese número).
+A continuación:
+• Crea una matriz llamada ORIGINAL con tantas filas y columnas como ha
+indicado el usuario.
+• Rellena la matriz con números aleatorios entre 1 y 9 (ambos incluidos).
+• Crea la matriz traspuesta de la matriz ORIGINAL. La matriz transpuesta es
+aquella que intercambia las filas por las columnas.
+*/
+function ej26 () {
+    let cols = pedNum("columnas");
+    let filas = pedNum("filas")
+    let original = new Array (cols, filas);
+}
+function pedNum (str) {
+    let num;
+        do{
+        num = prompt(`Introduce el num de ${str}: `);
+    } while (num <= 3 || num >= 7)
+}
+ej26 ();
