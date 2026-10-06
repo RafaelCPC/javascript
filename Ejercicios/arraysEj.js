@@ -163,15 +163,123 @@ indicado el usuario.
 • Crea la matriz traspuesta de la matriz ORIGINAL. La matriz transpuesta es
 aquella que intercambia las filas por las columnas.
 */
-function ej26 () {
-    let cols = pedNum("columnas");
-    let filas = pedNum("filas")
-    let original = new Array (cols, filas);
+    /*
+    function ej26 () {
+        let cols = pedNum("columnas");
+        let filas = pedNum("filas")
+        let original = new Array (cols, filas);
+    }
+    function pedNum (str) {
+        let num;
+            do{
+            num = prompt(`Introduce el num de ${str}: `);
+        } while (num <= 3 || num >= 7)
+    }
+    ej26 ();
+    */
+/*
+    Ejercicios de práctica
+    1. Crea una función que reciba un array () y un número. A continuación
+    la función debe devolver el número de veces que aparece ese número en el 
+    array y la primera aparición de este.
+    Requisito: hacerlo todo recorriendo el array solo una vez
+*/
+function pej1 (arr, num) {
+    let esta = false; let cont = 0; let pos = 0;
+    /*
+        Esto también funciona let apar = matriz.indexOf(num);
+    */
+    for (let i = 0; i < arr.length ; i++) {
+        if(arr[i] === num) {
+            if (!esta) pos = i;
+            esta = true;
+            cont++;
+        };
+    }
+    return [cont, pos]; 
 }
-function pedNum (str) {
-    let num;
-        do{
-        num = prompt(`Introduce el num de ${str}: `);
-    } while (num <= 3 || num >= 7)
+
+ let resul = pej1 ([1, 2, 3, 4, 5, 6, 1, 2, 1], 1);
+console.log(`El numero está ${resul[0]} veces. Aparece por primera vez en ${resul[1]}`);  
+
+/*
+    2. Crea una función que reciba una matriz de cualquier tamaño y devuelve
+    T o F si la matriz es simétrica o no
+    Una matriz es simétrica si cada elemento en la posición i j tiene el mismo 
+    valor que cada elemento en la posición j i
+    Intenta dar el menor número de vueltas posibles
+*/
+function pej2 (matriz) {
+    let sim = true;
+
+    for (let i = 0; i < matriz.length || !sim; i++) {
+        for (let j = i; j < matriz[i].length || !sim; j++) {
+            if(matriz[i][j] !== matriz[j][i]) sim = false;
+        }
+    }
+    return sim;
 }
-ej26 ();
+let res = "";
+(pej2([[1, 1, 1], [1, 1, 1], [1, 1, 1]])) ? res = "Es simétrica": res= "No es simétrica";
+console.log(res);
+/*
+    3. Función que recibe una matriz y un array de números. Devuelve una matriz donde cada fila de esa
+    matriz queda multiplicada por el correspondiente número del array. NO importa el tamaño
+    del array, solo uso los números que necesite
+    Vamos a suponer que el tamaño de la matriz siempre va a ser superior al del array.
+*/
+function pej3 (matriz, arra) {
+    let mat3 = [];
+    for (let i = 0; i < matriz.length; i++) {
+        mat3[i] = [];
+        for (let j = 0; j < matriz[i].length; j++) {
+            // mat3 [i][j] = matriz[i][j] * arra[i];
+            mat3[i].push(matriz[i][j] * arra[i]);
+        }
+    }
+    return mat3;
+}
+let matriz3 = [[2, 3, 5], [5, 2, 1], [7, 5, 3]];
+let arr3 = [3,4,5];
+
+let matRes = pej3 (matriz3,arr3);
+let res3 = "";
+for (let i = 0; i < matRes.length; i++) {
+    for (let j = 0; j < matRes.length; j++) {
+        res3 += matRes[i][j] +" ";
+    }
+    res3 += " \n";
+}
+console.log(res3);
+
+/*
+    4. Función que recibe una matriz de números de cualquier tamaño y un array de coordenadas
+    del mismo tamaño que la matriz. Una coordenada son DOS valores, luego los elementos de ese
+    array serán arrays de Dos valores. Suponemos que todas las coordenadas estén correctas.
+    let pos = [[1,2], [0, 3] [ 3, 1]]
+    Devuelve una matriz nueva donde haya un 0 en todas las posiciones que indique el array
+*/
+let rest = [1,2]
+console.log(rest[1]);
+
+
+function pej4 (matriz, pos) {
+    let mat4 = [];
+    for (let i = 0; i < matriz.length; i++) {
+        mat4.push([]);
+        for (let j = 0; j < matriz [i].length; j++) {
+            mat4[i].push (matriz [i][j]);
+        }
+    }
+    for (const e of pos) {
+        mat4[e[0]][e[1]]= 0 ;
+        }
+    return mat4;
+}
+let matriz4 = [[2, 3, 5], [5, 2, 1], [7, 5, 3]];
+let pos4 = [[1,2], [0, 3], [ 3, 1], [2, 2]]
+console.log(pej4(matriz4,pos4));
+/*
+    Como el anterior pero ahora devuelve la suma (int) de los elementos de la matriz que indique las
+    coordenadas
+*/
