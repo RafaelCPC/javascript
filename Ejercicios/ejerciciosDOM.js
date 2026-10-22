@@ -152,6 +152,7 @@ posición de la imagen.
     } else {izq = 5}
      */
     // c)
+    
     let imag = document.querySelector("#ej12").style.getPropertyValue("left");
     let izq = parseInt(imag);
 
@@ -162,5 +163,88 @@ posición de la imagen.
     document.querySelector("#cent").onclick = () => {
         document.querySelector("#ej12").style.setProperty("left", imag);
         izq= 0;
+    }
+    
+    /*
+        13.- Crea el efecto SPOILER que se puede ver en foros y otros páginas.
+        Se oculta el contenido de un elemento (pej, un párrafo) y sólo se muestra el mensaje
+        “Mostrar”. Al hacer click sobre dicho mensaje, se muestra el contenido del elemento y
+        el mensaje cambia a “Ocultar”. Si se pulsa sobre ese mensaje, el elemento vuelve a su
+        estado original (contenido oculto y mensaje “Mostrar”).
+    */
+   
+   let mostrar = document.querySelector("#mostrar");
+   let blur = document.querySelector("#ej13").style;
+
+   mostrar.onclick = () => {
+
+    if(blur.filter === "blur(0px)") {
+        blur.setProperty("filter","blur(4px)");
+        mostrar.textContent = "Spoiler";
+    } else{
+        blur.setProperty("filter","blur(0px)")
+        mostrar.textContent = "Ocultar";  
+    }
+   }
+
+   /*
+ 14. Crear un menú vertical con efecto acordeón usando los siguientes apartados:
+    • Inicio
+        ◦ Portada.
+        ◦ Acerca de mi.
+        ◦ Mis fotos.
+    • Proyectos
+        ◦ Web Apps.
+        ◦ Mobile Apps.
+        ◦ Juegos.
+    • Portfolio
+        ◦ Páginas webs.
+        ◦ Software.
+    • Contacto
+   */
+
+    let apartado = document.querySelectorAll(".apartado");
+    let oculto = document.querySelectorAll(".oculto");
+    
+    for (let i = 0; i < apartado.length; i++) {
+        apartado[i].onclick = () => {
+            if(oculto[i].style.display === "none"){
+                oculto[i].style.display = "block";
+                for (let j = 0; j < oculto.length; j++) {
+                    if(j !== i) oculto[j].style.display = "none";
+                }
+            } else {
+                oculto[i].style.display = "none";
+            }
+        }; 
+    }
+/*
+    16.- Usando las funciones setInterval y clearInterval de Javascript. Coloca
+    una etiqueta meter, una etiqueta progress y un botón al lado de cada una. Al pulsar el
+    botón se debe simular la “carga” de la barrita. Muestra un mensaje cuando se alcance el
+    máximo.
+    b) Mejora el ejercicio haciendo que cuando pulsemos uno de los botones, este quede
+    bloqueado hasta que la barra del elemento progress/meter se complete del todo.
+*/
+ let meter = document.querySelector("meter");
+ let progress = document.querySelector("progress");
+ let carga = document.querySelectorAll(".carga");
+ for (let i = 0; i < carga.length; i++) {
+    let por = 0;
+    carga[i].onclick = () => {
+        let intervalo = setInterval( () => {
+            if(i === 1) {
+                progress.setAttribute("value", por++)
+            }
+            else {
+                meter.setAttribute("value", por++);
+            } 
+            carga[i]. disabled = true;
+            if(por === 100) clearInterval(intervalo);
+            console.log(por);
+            
+            
+        },100)
+    }
     }
 }
