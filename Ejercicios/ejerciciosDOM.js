@@ -239,7 +239,7 @@ posición de la imagen.
             else {
                 meter.setAttribute("value", por++);
             } 
-            carga[i]. disabled = true;
+            carga[i].disabled = true;
             if(por === 100) clearInterval(intervalo);
             console.log(por);
             
