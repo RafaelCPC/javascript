@@ -245,6 +245,35 @@ posición de la imagen.
             
             
         },100)
+        }
     }
-    }
+
+    /*
+        19.- En HTML, crea una lista de 3 elementos y el botón “Añadir”. Al pulsar sobre el
+        botón, se le pide al usuario que meta una cadena de texto y se creará una nueva entrada
+        en la lista con el texto indicado.
+    */
+
+    /*
+        20.- En HTML, crea un párrafo con varias lineas de texto, y tres botones: ‘Generar’,
+        ‘Borrar Viejo’ , ‘Borrar Nuevos’ (deshabilitado) y ‘Sustituir’. Nada lleva ID así que no
+        puedes usar getElementById
+    */
+
+    /*
+        24.- Crea una lista (<ul>) con varios 7 elementos (<li>) representando tareas
+        pendientes. Maquetala para que parezca una lista de tareas de una aplicación (pej,
+        alternando para cada elemento el color de fondo y el color del texto blanco y verde).
+        Añade varios botones debajo de la lista:
+        • Añadir Tarea al Inicio: pide el nombre de la tarea usando prompt y la
+        añade al inicio de la lista (debe quedar maquetada).
+        • Añadir Tarea al Final: igual que el botón anterior pero añade la nueva
+        tarea al final de la lista (debe quedar maquetada).
+        • Eliminar Ultima Tarea: Cuando el usuario pulse el botón, debe
+        eliminarse el último elemento de la lista.
+        • Eliminar Primera Tarea: Igual que el anterior pero ahora se elimina la
+        primera tarea de la lista.
+        IMPORTANTE: Si ya no hay elementos, debe mostrarse un mensaje por consola
+        indicando que la lista está vacía
+    */
 }
