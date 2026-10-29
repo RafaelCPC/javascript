@@ -230,8 +230,8 @@ posición de la imagen.
  let progress = document.querySelector("progress");
  let carga = document.querySelectorAll(".carga");
  for (let i = 0; i < carga.length; i++) {
-    let por = 0;
     carga[i].onclick = () => {
+        let por = 0;
         let intervalo = setInterval( () => {
             if(i === 1) {
                 progress.setAttribute("value", por++)
@@ -258,7 +258,51 @@ posición de la imagen.
         20.- En HTML, crea un párrafo con varias lineas de texto, y tres botones: ‘Generar’,
         ‘Borrar Viejo’ , ‘Borrar Nuevos’ (deshabilitado) y ‘Sustituir’. Nada lleva ID así que no
         puedes usar getElementById
+        En CSS, crea dos clases para maquetar el párrafo (pon anchura, altura, borde, tamaño de
+        letra…) y haz que el párrafo anterior pertenezca a la primera clase.
+        Programa el siguiente funcionamiento de los botones:
+        • Generar: cada vez que se pulse, crea un nuevo párrafo similar al que ya existe
+        pero maquetado con la segunda clase. Todos los párrafos generados serán
+        hermanos.
+        • Borrar Viejo: elimina el párrafo que sale por defecto en la página. Al hacer eso,
+        este botón y el botón ‘Sustituir’ quedan bloqueados.
+        • Borrar Nuevos: este botón está bloqueado al principio y se desbloquea al pulsar
+        el botón ‘Generar’. Su cometido es borrar TODOS los párrafos generados por el
+        botón generar.
+        • Sustituir: este botón sustituye el párrafo inicial por una tabla de dos filas y dos
+        celdas con números en su interior. Recuerda que este botón estará bloqueado si
+        se borra el párrafo inicial con el botón ‘Borrar Viejo’.
     */
+        let but = document.querySelectorAll("#ej20 button");
+        let texto = document.querySelector("#ej20 p");
+        let copia = "";
+        let nuevo = "";
+        but[1].setAttribute("disabled", true);
+        but[0].onclick= () => {
+            nuevo = prompt("Introduce un nuevo texto: ");
+            copia = texto.innerText;
+            texto.innerText +="\n" + nuevo;
+            if(but[1].disabled === true){
+                but[1].disabled = false;
+            }
+        }
+        but[1].onclick= () => {
+            if(but[1].disabled === false){
+                texto.innerText = copia;
+                but[1].disabled = true;
+            }
+
+        };
+        
+        but[2].onclick= () => {
+            nuevo = prompt("Introduce un nuevo texto: ");
+            copia = texto.innerText;
+            texto.innerText = nuevo;
+            if(but[1].disabled === true){
+                but[1].disabled = false;
+            }
+        };
+        /* Creo que quiere que lo hagas creando nuevos child y borrandolos */
 
     /*
         24.- Crea una lista (<ul>) con varios 7 elementos (<li>) representando tareas
@@ -276,4 +320,74 @@ posición de la imagen.
         IMPORTANTE: Si ya no hay elementos, debe mostrarse un mensaje por consola
         indicando que la lista está vacía
     */
+    let ul = document.querySelector(".ej24 ul");    
+    let li = ["Dormir", "Comer", "Trabajar", "Llevar a los niños al cole", "piano", "futbol", "boda"];
+    let eli;
+
+    ul.style.setProperty("list-style-position", "inside");
+    ul.style.setProperty("width", "800px");
+    ul.style.setProperty("padding", "0px");
+    ul.style.setProperty("border-radius", "20px");
+    ul.style.setProperty("overflow", "hidden");
+    ul.style.setProperty("color", "white");
+
+    let cont = 0;
+    function tareas () {
+        li.forEach(e => {
+            eli = document.createElement("li");
+            eli.appendChild(document.createTextNode(e));
+            ul.appendChild(eli);
+
+            (cont % 2 == 0) ? eli.style.setProperty("background-color", "indianred"): eli.style.setProperty("background-color", "coral");
+            eli.style.setProperty("padding", "5px 15px");
+
+            cont++;
+        });
+    }
+    tareas();
+
+    function borrar () {
+        for (let i = 0; i < li.length; i++) {
+            ul.removeChild(ul.firstChild);
+        };
+        if(li.length < 2) console.log("No quedan tareas en la lista");
+    
+    }
+
+   let bot24 = document.querySelectorAll(".ej24 button");
+   let nuevo24 = "";
+
+   for (let i = 0; i < bot24.length; i++) {
+        bot24[i].onclick = () => {
+            if(i < 2) nuevo24 = prompt("Introduce una nueva tarea: ");
+            borrar ();
+            switch(i){
+                case 0: li.unshift(nuevo24); break;
+                case 1: li.push(nuevo24); break;
+                case 2: li.pop(); break;
+                case 3: li.shift(); break;
+            }
+            tareas(); 
+        }
+   }
+
+
+   /*
+        25.- Crea el efecto ‘ampliación’ de algunas galerías de fotos que podemos encontrar por
+        internet.
+        Para empezar, busca una imagen de gran tamaño (unos 1280x720px al menos) y coloca
+        la imagen en HTML pero con la mitad de tamaño. Crea el código Javascript necesario
+        para que , al hacer click sobre la imagen, suceda lo siguiente:
+        • Aparecerá una capa semitransparente de color gris que tapará TODA la parte
+        visible de la página y que no se moverá de sitio al hacer scroll.
+        • Dentro de esa capa, aparecerá la imagen con su tamaño original centrada tanto
+        horizontal como vertical y perfectamente visible.
+        • Al hacer click en cualquier punto de la capa, desaparecerá junto con la imagen
+        de tamaño original.
+        Nota: Haz uso del objeto Screen y/o Window.
+        b) Mejora el ejercicio anterior de modo que funcione para cualquier imagen que haya en
+        una página. Al hacer click sobre cualquiera de las imágenes de la página, esta aparece
+        con su tamaño original dentro de la capa semitransparente que lo cubre todo
+   */
+  let = document.querySelector(".ej25 img")
 }
