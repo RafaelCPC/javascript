@@ -1,0 +1,22 @@
+        body{ margin: 0px;}
+
+        .centrado{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            width: 100vw;
+            height: 100%;
+            z-index: 0;
+        }
+        .imgCent{
+            position: relative;
+            left: 50%;     
+            transform: translateX(-50%);
+            width: 80%;
+            z-index: 1;
+            margin-top: 25px;
+            border: 2px solid whitesmoke; 
+        }
+        .ej25{
+            display: flex;
+            align-items: center;
+        }

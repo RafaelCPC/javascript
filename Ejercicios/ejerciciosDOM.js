@@ -247,13 +247,44 @@ posición de la imagen.
         },100)
         }
     }
+    /*
+        17.- Carrera de DIVS
+        Coloca 4 divs de 100x100px y color de fondo distinto en la parte izquierda de la
+        pantalla (uno debajo de otro). Crea un botón que se llame CORRER y al pulsarlo, los
+        divs se moverán hacia la derecha de la pantalla de manera automática. Cada DIV debe
+        moverse a una velocidad aleatoria que cambiará en cada carrera. El primer DIV que
+        llegue a la derecha de la pantalla, gana. Nota: realiza el cálculo a ojo, ya aprenderemos
+        a obtener las medidas de la página correctamente.
+        Coloca otro botón para resetear todo y volver a comenzar la carrera.
+    */
+
+    /*
+        18.- Modifica el ejercicio 16 de esta relación de la siguiente forma:
+        • Usa sólo el elemento progress y el botón que se encarga de realizar el
+        funcionamiento explicado en el ejercicio 16. Cambia el nombre del botón por
+        “Generar moneda”
+        • Crea usando HTML un div en la parte superior izquierda llamado MONEDAS,
+        cuyo contenido inicial será el número 0.
+        • Cada vez que se pulse sobre el botón ‘Generar moneda’, se bloqueará dicho
+        botón y se cargará la barra de progress como se vio en el ejercicio 17.
+        • Al terminar la carga, se sumará una moneda al contenido del div MONEDAS y
+        se desbloqueará el botón ‘Generar Moneda’.
+    */
 
     /*
         19.- En HTML, crea una lista de 3 elementos y el botón “Añadir”. Al pulsar sobre el
         botón, se le pide al usuario que meta una cadena de texto y se creará una nueva entrada
         en la lista con el texto indicado.
     */
-
+        let ul19 = document.querySelector("#ej19");
+        let but19 = document.querySelector("#ej19but");
+        let el19;
+        but19.onclick = () => {
+            let str19 = prompt("Introduce una actividad: ");
+            el19 = document.createElement("li");
+            el19.appendChild(document.createTextNode(str19));
+            ul19.appendChild(el19);
+        }
     /*
         20.- En HTML, crea un párrafo con varias lineas de texto, y tres botones: ‘Generar’,
         ‘Borrar Viejo’ , ‘Borrar Nuevos’ (deshabilitado) y ‘Sustituir’. Nada lleva ID así que no
@@ -304,6 +335,45 @@ posición de la imagen.
         };
         /* Creo que quiere que lo hagas creando nuevos child y borrandolos */
 
+        /*
+        21.- Crea un programa en Javascript que al colocar el ratón encima de cualquier enlace,
+        aparezca un div de 200x200px con maquetación en CSS (color de fondo, tamaño de
+        letras, relleno, sombra paralela, bordes redondeados...) en la esquina superior derecha de
+        la pantalla con el texto: Esto es un enlace.
+        b) Mejora el ejercicio anterior para que el mensaje sea: “La URL de este enlace es:
+        xxxxxx” (siendo xxxxxx la url del enlace sobre el que se coloca el ratón).
+        */
+       let enla = document.querySelectorAll("a");
+       let div21 = document.querySelector("#ej21");
+       let p21 = document.querySelector("#ej21 p");
+
+       enla.forEach(e => {
+            e.onmouseenter = () => {
+                div21.style.setProperty("display", "block");
+                p21.innerText=`La URL de este enlace es: ${e.href}`;
+            }
+            e.onmouseleave  = () => {
+                div21.style.setProperty("display", "none");
+                
+            }
+       });
+
+
+        /*
+        23.- Crea una página con un <div> que contenga una imagen y un párrafo descriptivo
+        de la propia imagen.
+        Debajo, coloca un botón con el texto “Cambiar contenido”.
+        Cuando el usuario pulse el botón, ambos elementos (imagen y texto) deben sustituirse
+        por otros nuevos creados desde JavaScript (por ejemplo, una imagen distinta y un nuevo
+        texto). 
+        */
+       let img23 = document.querySelector("#ej23 img");
+       let p23 = document.querySelector("#ej23 p");
+       let but23 = document.querySelector("#ej23 button");
+       but23.onclick = () => {
+            p23.innerText = prompt("Introduce un texto descriptivo");
+            img23.src="../Image/borborygmos-and-fblthp.jpg";
+       }
     /*
         24.- Crea una lista (<ul>) con varios 7 elementos (<li>) representando tareas
         pendientes. Maquetala para que parezca una lista de tareas de una aplicación (pej,
@@ -371,23 +441,4 @@ posición de la imagen.
         }
    }
 
-
-   /*
-        25.- Crea el efecto ‘ampliación’ de algunas galerías de fotos que podemos encontrar por
-        internet.
-        Para empezar, busca una imagen de gran tamaño (unos 1280x720px al menos) y coloca
-        la imagen en HTML pero con la mitad de tamaño. Crea el código Javascript necesario
-        para que , al hacer click sobre la imagen, suceda lo siguiente:
-        • Aparecerá una capa semitransparente de color gris que tapará TODA la parte
-        visible de la página y que no se moverá de sitio al hacer scroll.
-        • Dentro de esa capa, aparecerá la imagen con su tamaño original centrada tanto
-        horizontal como vertical y perfectamente visible.
-        • Al hacer click en cualquier punto de la capa, desaparecerá junto con la imagen
-        de tamaño original.
-        Nota: Haz uso del objeto Screen y/o Window.
-        b) Mejora el ejercicio anterior de modo que funcione para cualquier imagen que haya en
-        una página. Al hacer click sobre cualquiera de las imágenes de la página, esta aparece
-        con su tamaño original dentro de la capa semitransparente que lo cubre todo
-   */
-  let = document.querySelector(".ej25 img")
 }
