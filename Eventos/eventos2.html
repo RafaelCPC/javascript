@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos II (la venganza)</title>
+</head>
+<body> 
+    <section>
+        <div> 
+            <p> pulsa aqui </p> 
+        </div> 
+    </section>
+    <button> Quitar al jonny</button>
+</body> 
+<script>
+    /*
+    Manejadores de Eventos
+    Esto que estamos hablando es la Fase de Burbuja. Saldrían los tres, pero iría del más específico al más genérico. Es decir, que primero saldría el párrafo, luego el div y por último el body. Da igual el orden.  
+    Podemos decidir que en vez de seguir la Fase de Burbuja, se siga el orden de la Fase de Captura. Es parecido al cambio de fases de Magia el encuentro. En la Fase de Captura se sigue el orden escrito, por lo que sería primero el body, luego el div y por último el párrafo. 
+    Si no indicamos nada se ejecuta en fase de burbuja. 
+    */
+   let abuelo = document.querySelector("section");
+   let padre = document.querySelector("div");
+   let hijo = document.querySelector("p");
+   
+   /*
+   abuelo.onclick = () => {
+        alert("Soy el abuelo");
+   }
+    padre.onclick = () => {
+        alert("Soy el padre");
+   }
+    hijo.onclick = () => {
+        alert("Soy el hijo");
+   }
+    padre.onclick = () => {
+        alert("Soy el papucho");
+   }
+
+   Como las funciones son tipos válidos de datos, el segundo padre
+    machaca al primero como una variable. Por lo que sale el goda, el yayo, 
+    papucho y el jonny
+    */
+
+    /*
+     así es como lo vamos a ver en realidad.
+     El onclick ya es antiguo y esta es la manera moderna.
+     En principio el funcionamiento es el mismo
+     */
+
+   documento.body.addEventListener("click", () => {
+        alert("Soy vuestro goda");
+   },true)
+   abuelo.addEventListener("click", () => {
+        alert("Soy el yayo");
+   })
+    padre.addEventListener("click", () => {
+        alert("Soy el papa");
+   }, true)
+    hijo.addEventListener("click", () => {
+        alert("Soy el jonny");
+   })
+   /*
+    Saldría primero el body, luego el yayo, el padre y el jonny
+    Primero se cogen todos los de captura y luego todos los de burbuja
+
+    Si tenemos varios EventListener, dos de ellos en fase de burbuja y 
+    luego otro en fase de captura. Esto hace que los de Fase de burbuja se resuelva en específico y el otro en general.
+   */
+
+//     documento.body.addEventListener("click", () => {
+//         alert("Soy vuestro goda");
+//    })
+//     abuelo.addEventListener("click", () => {
+//         alert("Soy el yayo");
+//    })
+//     padre.addEventListener("click", () => {
+//         alert("Soy el papa");
+//    })
+//      hijo.addEventListener("click", () => {
+//         alert("Soy el jonny");
+//    })
+//        padre.addEventListener("click", () => {
+//         alert("Soy el papucho");
+//    })
+
+   /* 
+    El addEventListener añade funcionalidad, por lo que si hicieramos lo mismo con
+    con onclick, se pisaría, pero en este caso no. POr lo que sería, el jonny, luego el papa,
+    papucho, el yayo y deity.
+    */
+
+       documento.body.addEventListener("click", () => {
+        alert("Soy vuestro goda");
+   }, true)
+    abuelo.addEventListener("click", () => {
+        alert("Soy el yayo");
+   })
+    padre.addEventListener("click", () => {
+        alert("Soy el papa");
+   }, true)
+     hijo.addEventListener("click", mensaje, true)
+       padre.addEventListener("click", () => {
+        alert("Soy el papucho");
+   })
+
+// sería primero goda, el papa, el jonny, el papucho y el yayo.
+function mensaje () {
+    alert("Soy el jonny")
+}
+document.querySelector("button").addEventListener("click", () => {
+    alert("quitando al jonny");
+    // hijo.removeEventListener("click", () => {
+
+    //    // esto no funcionaría porque las funciones anónimas se consideran diferentes unas de otras
+    //    // tendrñiamos que poner la misma función con nombre
+        
+    //    alert("Soy el jonny");
+    // }, true)
+
+    hijo.removeEventListener("click", mensaje);
+})
+</script>
+</html>
