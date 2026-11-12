@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de juego 8x8</title>
+    <script src="ejEventos.js"></script>
+     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eaf4fc;
+            font-family: Arial, sans-serif;
+        }
+
+        .contenedor {
+            padding: 25px;
+            background-color: #d5e9f8;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(70, 120, 160, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #547c9e;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .tablero {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+            gap: 1px;
+            padding: 5px;
+            background-color: #79a9cf;
+            border: 5px solid #79a9cf;
+            border-radius: 5px;
+        }
+
+        .celda {
+            width: 50px;
+            height: 50px;
+            background-color: #EEE;
+            border: 1px solid #000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .activa{
+            background-color: #afd3ed;
+        }
+
+        /* Bordes exteriores más gruesos */
+        .celda:nth-child(8n + 1) {
+            border-left: 2px solid #79a9cf;
+        }
+
+        .celda:nth-child(8n) {
+            border-right: 2px solid #79a9cf;
+        }
+
+        .celda:nth-child(-n + 8) {
+            border-top: 2px solid #79a9cf;
+        }
+
+        .celda:nth-child(n + 57) {
+            border-bottom: 2px solid #79a9cf;
+        }
+
+        /* Botón limpiar */
+        .boton-limpiar {
+            display: block;
+            margin: 20px auto 0;
+            padding: 12px 35px;
+            background-color: #91bfe0;
+            color: white;
+            border: 2px solid #79a9cf;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(70, 120, 160, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .boton-limpiar:hover {
+            background-color: #6fa8d1;
+            transform: translateY(-2px);
+        }
+
+        .boton-limpiar:active {
+            transform: translateY(0);
+        }
+
+        /* CONTROLES DE MOVIMIENTO */
+
+        .controles {
+            display: grid;
+            grid-template-columns: repeat(3, 55px);
+            grid-template-rows: repeat(2, 45px);
+            gap: 6px;
+            justify-content: center;
+            margin-top: 15px;
+            font-size: .75em;
+        }
+
+        .boton-movimiento {
+            background-color: #91bfe0;
+            color: white;
+            border: 2px solid #79a9cf;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 3px 5px rgba(70, 120, 160, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .boton-movimiento:hover {
+            background-color: #6fa8d1;
+            transform: translateY(-2px);
+        }
+
+        .boton-movimiento:active {
+            transform: translateY(0);
+        }
+
+        /* POSICIÓN DE LOS BOTONES */
+
+        .arriba {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .izquierda {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .abajo {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .derecha {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+        <h1>Tablero de juego</h1>
+
+        <div class="tablero">
+            <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+            <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+            <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+            <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+            <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+            <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+            <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+            <div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div><div class="celda"></div>
+        </div>
+    </div>
+
+    <button class="boton-limpiar" type="button">
+            LIMPIAR
+    </button>
+
+     <!-- BOTONES DE MOVIMIENTO -->
+
+        <div class="controles">
+
+            <button class="boton-movimiento arriba" type="button">
+                ARRIBA
+            </button>
+
+            <button class="boton-movimiento izquierda" type="button">
+                IZQUIERDA
+            </button>
+
+            <button class="boton-movimiento abajo" type="button">
+                ABAJO
+            </button>
+
+            <button class="boton-movimiento derecha" type="button">
+                DERECHA
+            </button>
+
+        </div>
+
+</body>
+</html>
+
+<!--
+Apartado A:
+-----------
+Al hacer click en una celda, esa celda se pinta de AZUL
+El boton LIMPIAR pone todas las celdas en color blanco.
+
+Apartado B:
+-----------
+dado el array let colores = ['red','green', 'blue', 'yellow']
+Y una variable que indica el color a pintar.
+Al hacer click en una celda, esa celda se pinta del color que indica la variable 
+anterior.
+Para cambiar de color hay que pulsar el boton DERECHO del raton. 
+¿Como cambio de color?
+AL pulsar el boton derecho del raton, avanzo en el array de colores. AL llegar
+al final, empiezo por el principio.
+
+Apartado C:
+-----------
+De manera aleatoria, añade a una de las celdas la clase ACTIVA
+
+Usa los botones de la clase CONTROLES para mover "esa celda" por el tablero.
+Obviamente, no puede salirse del tablero
+
+
+Apartado D:
+-----------
+Igual que el apartado C pero ahora se mueve usando las teclas:
+W: arriba
+A: izquierda
+S: abajo
+D: derecha
+->

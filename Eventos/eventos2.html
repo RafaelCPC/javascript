@@ -12,6 +12,10 @@
         </div> 
     </section>
     <button> Quitar al jonny</button>
+    <input type="text" name="" id="">
+    <textarea name="" id=""></textarea> <br>
+
+    <a href="https://www.infojobs.com"> Yo no visito esta página</a>
 </body> 
 <script>
     /*
@@ -49,18 +53,18 @@
      En principio el funcionamiento es el mismo
      */
 
-   documento.body.addEventListener("click", () => {
-        alert("Soy vuestro goda");
-   },true)
-   abuelo.addEventListener("click", () => {
-        alert("Soy el yayo");
-   })
-    padre.addEventListener("click", () => {
-        alert("Soy el papa");
-   }, true)
-    hijo.addEventListener("click", () => {
-        alert("Soy el jonny");
-   })
+//    document.body.addEventListener("click", () => {
+//         alert("Soy vuestro goda");
+//    },true)
+//    abuelo.addEventListener("click", () => {
+//         alert("Soy el yayo");
+//    })
+//     padre.addEventListener("click", () => {
+//         alert("Soy el papa");
+//    }, true)
+//     hijo.addEventListener("click", () => {
+//         alert("Soy el jonny");
+//    })
    /*
     Saldría primero el body, luego el yayo, el padre y el jonny
     Primero se cogen todos los de captura y luego todos los de burbuja
@@ -91,19 +95,19 @@
     papucho, el yayo y deity.
     */
 
-       documento.body.addEventListener("click", () => {
-        alert("Soy vuestro goda");
-   }, true)
-    abuelo.addEventListener("click", () => {
-        alert("Soy el yayo");
-   })
-    padre.addEventListener("click", () => {
-        alert("Soy el papa");
-   }, true)
-     hijo.addEventListener("click", mensaje, true)
-       padre.addEventListener("click", () => {
-        alert("Soy el papucho");
-   })
+//     document.body.addEventListener("click", () => {
+//         alert("Soy vuestro goda");
+//    }, true)
+//     abuelo.addEventListener("click", () => {
+//         alert("Soy el yayo");
+//    })
+//     padre.addEventListener("click", () => {
+//         alert("Soy el papa");
+//    }, true)
+//      hijo.addEventListener("click", mensaje, true)
+//        padre.addEventListener("click", () => {
+//         alert("Soy el papucho");
+//    })
 
 // sería primero goda, el papa, el jonny, el papucho y el yayo.
 function mensaje () {
@@ -120,6 +124,66 @@ document.querySelector("button").addEventListener("click", () => {
     // }, true)
 
     hijo.removeEventListener("click", mensaje);
+})
+
+// Objeto Event
+/*
+    Si sacamos el evento click por consola vemos muchas propiedades como la posición del ratón.
+    El evento (e) es un parámetro que ya está definido, por lo que no tenemos que definirlo
+*/
+hijo.addEventListener("click", (e) => {
+    console.log(e);
+    console.log(e.target); // nos dice qué etiqueta produce el evento (si es el section, p, div...). Se aplica a todo el documento
+    console.log(e.currentTarget); // me da el objeto que tiene asociado la función addEventListener
+    console.log(e.target.textContent);
+    
+})
+document.querySelector("input").addEventListener("keydown", (e) => {
+    console.log(e.key + "---" + e.charCode); //e.key muestra la tecla que se ha pulsado
+    // e.charCode muestra el nº uniCode del botón pulsado
+    
+    console.log("Control: " + e.ctrlKey); // da un bool por sobre si se ha pulsado ctrl
+    console.log("Alt: " + e.altKey); // si se pulsa alt
+    console.log("Shift: " + e.shiftKey); // shift...
+    console.log("Windows: " + e.metaKey); // la tecla windows
+    
+
+    if(e.key == "a") alert("izq");
+    else if (e.key === "Enter") alert("Has pulsado enter");
+})
+
+document.addEventListener("mousemove", (e) => {
+    let res = "Ratón X: " + e.clientX + ", Ratón Y: " + e.clientY; //muestra la posición del ratón en el espacio visible
+    let res1 = "Ratón X: " + e.pageX + ", Ratón Y: " + e.pageY; // muestra la posición en toda la página
+    document.querySelector("textarea").value = res + " ... " + res1;
+})
+
+/*
+    Existen etiquetas que de por sí tienen una función asociada. <a> por ejemplo o <button> <input type="button">
+    Si queremos quitar esa función se lo tenemos que comunicar mediante js.
+*/
+document.querySelector("a").addEventListener("click", (e) => {
+    e.preventDefault(); // previene el funcionamiento normal de la etiqueta
+    alert("No me da la gana de visitar la página");
+}) 
+// Antes, cuando clicabamos en el hijo afectaba al resto. Pero tenemos un método para evitar que afecte al resto
+// El orden de ejecución no va a caer en el examen de este trimestre. Pero es un ejercicio interesante para el teórico del 2o trim
+hijo.addEventListener ("click", (e) => {
+    e.stopPropagation(); // Hace que solo salga el alert del hijo
+    alert("Soy el hijo");
+}, true)
+padre.addEventListener ("click", (e) => {
+    e.stopPropagation(); // Impide que afecte a otros elementos
+    alert("Soy el padre");
+})
+abuelo.addEventListener ("click", (e) => {
+    e.stopPropagation();
+    alert("Soy el abuelo");
+}, true)
+
+padre.addEventListener ("click", (e) => {
+    e.stopImmediatePropagation(); // Impide que afecte a otros elementos y a otros Listener asociados a esos elementos
+    alert("Soy el padre");
 })
 </script>
 </html>

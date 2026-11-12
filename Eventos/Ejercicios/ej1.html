@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <ul id="productos">
+        <li>Ratón</li>
+        <li>Teclado</li>
+        <li>Altavoces</li>
+        <li> Cascos</li>
+    </ul>
+<script>
+    window.onload = () => {
+        let prod = document.querySelector("#productos");
+        prod.addEventListener ("click", (e) => {
+            // if (e.target != e.currentTarget)
+            /*
+                Funcionaría igual que el de abajo porque el currentTarget es el que tiene el evento
+                Y el target serían los li
+            */
+            if (e.target.tagName == "LI") { // para que al clicar el UL no se ponga en rojo también. Tiene que estar en mayus
+            e.target.style.backgroundColor = "red"; // Esta manera es mucho mejor que lo que teníamos antes
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
