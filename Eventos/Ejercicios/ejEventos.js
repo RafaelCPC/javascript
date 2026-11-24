@@ -38,4 +38,9 @@ window.onload= () => {
     // C) 
     let rand = parseInt((Math.random() * 46 + 1))
     // Añadir clase Activo celda[rand].addC
+    celda[rand].classList.add("activa");
+    let arriba = document.querySelector(".arriba");
+    let abajo = document.querySelector(".abajo");
+    let derecha = document.querySelector(".derecha");
+    let izquierda = document.querySelector(".izquierda");
 }

@@ -50,6 +50,31 @@
     </div>
 </body>
 <script>
+/* Para evitar que se propague. Corrección de Jaime.
+
+    let boton = document.getElementById("botonMenu");
+    let menu = document.getElementById("menu");
+    let botones = menu.querySelectorAll("button");
+
+    boton.addEventListener("click", (e) => {
+        menu.style.display = "block";
+        event.stopPropagation();
+    })
+    document.body.addEventListener("click", () => {
+        menu.style.display = none;
+        event.stopPropagation();
+    })
+
+    Corregir para poner los botones. Hay una manera más correcta con e.target y e.currentTarget
+    botones.forEach(e => {
+        e.addEventListener("click", (e) => {
+            alert(this.textContent)
+            event.stopPropagation();
+        })
+    });
+*/
+
+
     let tr = false;
     function menu () {
         if(!tr){
