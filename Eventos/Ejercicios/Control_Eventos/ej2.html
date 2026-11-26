@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <div id="informacion-tecla">
+        <h3>Información de la tecla</h3>
+        <p id="tecla-pulsada">
+        Pulsa cualquier tecla para comenzar...
+        </p>
+    </div>
+    <script>
+        window.onload = () => {
+            document.addEventListener("keydown", (e) => {
+                console.log(e.key); // Muestra la tecla que sale
+                console.log(e.code);
+                console.log(e.repeat);
+                console.log(e.isComposing);
+                console.log(e.target);
+            })
+        }
+        
+    </script>
+</body>
+</html>

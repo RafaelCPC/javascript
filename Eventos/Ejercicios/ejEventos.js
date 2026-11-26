@@ -36,11 +36,72 @@ window.onload= () => {
         })
 
     // C) 
-    let rand = parseInt((Math.random() * 46 + 1))
-    // Añadir clase Activo celda[rand].addC
+    let rand = parseInt((Math.random() * 64 + 1))
     celda[rand].classList.add("activa");
+
     let arriba = document.querySelector(".arriba");
     let abajo = document.querySelector(".abajo");
     let derecha = document.querySelector(".derecha");
     let izquierda = document.querySelector(".izquierda");
+
+    arriba.addEventListener("click", () => {
+        if(rand > 7) {
+            celda[rand].classList.remove("activa");
+            rand -= 8; 
+            celda[rand].classList.add("activa");
+        }
+    })
+    abajo.addEventListener("click", () => {
+        if(rand < 55) {
+            celda[rand].classList.remove("activa");
+            rand += 8; 
+            celda[rand].classList.add("activa");
+        }
+    })
+    derecha.addEventListener("click", () => {
+        if((rand +1) % 8 != 0) {
+            celda[rand].classList.remove("activa");
+            rand++; 
+            celda[rand].classList.add("activa");
+        }
+    })
+    izquierda.addEventListener("click", () => {
+        if(rand % 8 != 0) {
+            celda[rand].classList.remove("activa");
+            rand--; 
+            celda[rand].classList.add("activa");
+        }
+    })
+
+    // D) 
+    document.addEventListener("keydown", (e) => {
+        if(e.key == "w") {
+            if(rand > 7) {
+                celda[rand].classList.remove("activa");
+                rand -= 8; 
+                celda[rand].classList.add("activa");
+            }
+        }
+        if(e.key == "s") {
+            if(rand < 55) {
+                celda[rand].classList.remove("activa");
+                rand += 8; 
+                celda[rand].classList.add("activa");
+            }
+        }
+        if(e.key == "d") {
+            if((rand +1) % 8 != 0) {
+                celda[rand].classList.remove("activa");
+                rand++; 
+                celda[rand].classList.add("activa");
+            }
+        }
+        if(e.key == "a") {
+            if(rand % 8 != 0) {
+                celda[rand].classList.remove("activa");
+                rand--; 
+                celda[rand].classList.add("activa");
+            }
+        }
+    })
 }
